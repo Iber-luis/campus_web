@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const conexion = require('../dbConnection');
+const { pool } = require('../dbConnection');
 const fs = require('fs');
 
 router.get('/pedir-mesa', (req, res) => {
