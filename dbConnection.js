@@ -9,6 +9,14 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
+client.connect()
+  .then(() => {
+    console.log('Conexión exitosa a la base de datos');
+  })
+  .catch((error) => {
+    console.error('Error de conexión:', error);
+  });
+
 // Exporta el pool para usarlo en otros archivos
 module.exports = pool;
 
