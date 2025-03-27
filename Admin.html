@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="conten/logo3.png"/>
+    <link rel="stylesheet" type="text/css" href="css/estilos-admin.css"/>
+    <link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Raleway:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Administracion</title>
+</head>
+<body>
+    <br><br>
+    <section class="Main">
+        <div class="sidebar">
+        <h3>Admin Panel</h3>
+            <a href="#" onclick="showSection('dashboard')">Inicio</a>
+            <a href="#" onclick="showSection('solicitudes')">Solicitudes</a>
+            <a href="#" onclick="showSection('Pedidos')">Pedidos</a>
+            <a href="#" onclick="showSection('Productos')">Productos</a>
+            <a href="#" onclick="showSection('Mesas')">Mesas</a>
+        </div>
+        <div class="main-content">
+        <div id="dashboard">
+            <h2>Inicio</h2>
+            <p>Bienvenido al Panel de Administración!</p>
+            <p>Informe Resumen principal</p>
+            <div class="resumenbox">
+                <div class="resumen">
+                    <p>-Total de Ventas:<span>#222</span></p>
+                    <p>-Numero de ventas:<span>#222</span></p>
+                    <p>-Numero de clientes:<span>#222</span></p>
+                </div>
+            </div>
+            <div class="tablabox">
+                <h6>-Ventas por Mes</h6>
+                <table>
+                    <tr>
+                        <th>Año</th>
+                        <th>Mes</th>
+                        <th>Ventas</th>
+                    </tr>
+                <tr>
+                    <td>2222</td>
+                    <td>2222</td>
+                    <td>2222</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        <div id="solicitudes" class="hidden">
+            <h2>Solicitudes</h2>
+            <p>Visualizacion de solicitudes Campus.</p>
+            <div id="solicitudes-pendientes">
+                
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+            function cargarSolicitudes() {
+                $.ajax({
+                    url: 'http://localhost:3001/servicios/obtener-solicitudes',
+                    method: 'GET',
+                    success: function(solicitudes) {
+                        const contenedor = $('#solicitudes-pendientes');
+                        contenedor.empty();
+                        if (solicitudes.length === 0) {
+                            contenedor.append('<p>!!No hay solicitudes realizadas!!</p>');
+                        } else {
+                            solicitudes.forEach((solicitud) => {
+                                contenedor.append(`
+                                    <div class="solicitud">
+                                        <p>Usuario: ${solicitud.nombre_usuario}</p>
+                                        <p>Mesa: ${solicitud.nombre_mesa}</p>
+                                        <p>CC: ${solicitud.cc}</p>
+                                        <button onclick="actualizarEstado(${solicitud.id}, 'permitido')">Permitir</button>
+                                        <button onclick="actualizarEstado(${solicitud.id}, 'rechazado')">Rechazar</button>
+                                    </div>
+                                `);
+                            });
+                        }
+                    },
+                });
+            }
+
+            setInterval(cargarSolicitudes, 5000);
+
+            function actualizarEstado(id, estado) {
+                $.ajax({
+                    url: `http://localhost:3001/servicios/actualizar-estado/${id}`,
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ estado: estado }),
+                    success: function(response) {
+                        alert("Solicitud actualizada.");
+                        cargarSolicitudes();
+                    },
+                    error: function(error) {
+                        console.error("Error al actualizar la solicitud:", error);
+                        alert("Ocurrió un error.");
+                    }
+                });
+            }
+            $(document).ready(cargarSolicitudes);
+            </script>
+        </div>
+
+        <!-- pedidos -->
+        <div id="Pedidos" class="hidden">
+            <h2>Pedidos</h2>
+            <p>Informe de pedidos Campus</p>
+            <div id="lista-pedidos"></div>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                function cargarPedidos() {
+                    $.ajax({
+                        url: 'http://localhost:3001/servicios/obtener-pedidos',
+                        method: 'GET',
+                        success: function(pedidos) {
+                            const contenedor = $('#lista-pedidos');
+                            contenedor.empty();
+                            if (pedidos.length === 0) {
+                                contenedor.append('<p>!!No hay pedidos realizados!!</p>');
+                            } else {
+                                pedidos.forEach(pedido => {
+                                    const pedidoHTML = `
+                                        <div class="pedido">
+                                            <p>Platos: ${pedido.platos}</p>
+                                            <p>Precios: ${pedido.precios}</p>
+                                            <p>Mesa: ${pedido.nombre_mesa}</p>
+                                            <p>Usuario: ${pedido.nombre_usuario}</p>
+                                            <button onclick="finalizarPedido('${pedido.nombre_mesa}', '${pedido.nombre_usuario}')">Finalizar pedido</button>
+                                        </div>
+                                    `;
+                                    contenedor.append(pedidoHTML);
+                                });
+                            }
+                        },
+                        error: function() {
+                            console.error("Error al cargar pedidos.");
+                            $('#lista-pedidos').html('<p>Error al cargar pedidos</p>');
+                        }
+                    });
+                }
+
+                setInterval(cargarPedidos, 5000);
+
+                function finalizarPedido(nombreMesa, nombreUsuario) {
+                    const cc = localStorage.getItem("ccUsuario");
+                    const numero = localStorage.getItem("telefonoUsuario");
+
+                    $.ajax({
+                        url: 'http://localhost:3001/servicios/finalizar-pedido',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            nombre_mesa: nombreMesa,
+                            nombre_usuario: nombreUsuario,
+                            cc: cc,
+                            numero: numero,
+                        }),
+                        success: function(response) {
+                            alert(response.mensaje);
+                            cargarPedidos();
+                        },
+                        error: function() {
+                            console.error("Error al finalizar el pedido.");
+                            alert("Ocurrió un error al finalizar el pedido.");
+                        }
+                    });
+                }
+
+                $(document).ready(cargarPedidos);
+            </script>
+        </div>
+        <!-- productos -->
+        <div id="Productos" class="hidden">
+            <h2>Productos</h2>
+            <p>Visualizacion de productos Campus</p>
+            <form id="formulario-plato">
+                <input type="hidden" id="plato_id">
+                <input type="text" id="nombre_plato" placeholder="Nombre del plato" required>
+                <input type="text" id="descripcion" placeholder="Descripción" required>
+                <input type="text" id="img" placeholder="Imagen" required>
+                <input type="text" id="nombre_tipocomida" placeholder="Tipo de comida" required>
+                <input type="number" id="precio" placeholder="Precio" required>
+                <button type="button" onclick="agregarPlato()" id="boton-agregar">Agregar Plato</button>
+                <button type="button" onclick="actualizarPlato()" id="boton-actualizar">Actualizar Plato</button>
+                <button type="button" onclick="limpiarFormulario()">Limpiar</button>
+            </form>
+            <div id="lista-platos"></div>
+            <script>
+                function cargarPlatos() {
+                    $.ajax({
+                        url: 'http://localhost:3001/servicios/obtener-platos',
+                        method: 'GET',
+                        success: function(platos) {
+                            const contenedor = $('#lista-platos');
+                            contenedor.empty();
+                
+                            if (platos.length === 0) {
+                                contenedor.append('<p>No hay platos disponibles</p>');
+                            } else {
+                                platos.forEach(plato => {
+                                    const platoHTML = `
+                                        <div class="plato">
+                                            <p>Nombre: ${plato.nombre_plato}</p>
+                                            <p>Descripción: ${plato.descripcion}</p>
+                                            <p>Tipo de comida: ${plato.nombre_tipocomida}</p>
+                                            <p>Precio: ${plato.precio}</p>
+                                            <button onclick="eliminarPlato(${plato.id})">Eliminar</button>
+                                            <button onclick="mostrarFormularioActualizar(${plato.id}, '${plato.nombre_plato}', '${plato.descripcion}', '${plato.img}', '${plato.nombre_tipocomida}', ${plato.precio})">Actualizar</button>
+                                        </div>
+                                    `;
+                                    contenedor.append(platoHTML);
+                                });
+                            }
+                        },
+                        error: function() {
+                            console.error("Error al cargar los platos.");
+                        }
+                    });
+                }
+                setInterval(cargarPlatos, 5000);
+
+
+                function agregarPlato() {
+                    const nuevoPlato = {
+                        nombre_plato: $('#nombre_plato').val(),
+                        descripcion: $('#descripcion').val(),
+                        img: $('#img').val(),
+                        nombre_tipocomida: $('#nombre_tipocomida').val(),
+                        precio: parseInt($('#precio').val(), 10)
+                    };
+                
+                    $.ajax({
+                        url: 'http://localhost:3001/servicios/agregar-plato',
+                        method: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(nuevoPlato),
+                        success: function(response) {
+                            alert(response.mensaje);
+                            cargarPlatos();
+                        },
+                        error: function() {
+                            console.error("Error al agregar el plato.");
+                        }
+                    });
+                    limpiarFormulario();
+                }
+
+                function eliminarPlato(id) {
+                    $.ajax({
+                        url: `http://localhost:3001/servicios/eliminar-plato/${id}`,
+                        method: 'DELETE',
+                        success: function(response) {
+                            alert(response.mensaje);
+                            cargarPlatos();
+                        },
+                        error: function() {
+                            console.error("Error al eliminar el plato.");
+                        }
+                    });
+                }
+
+                function actualizarPlato(id) {
+                    const platoActualizado = {
+                        nombre_plato: $('#nombre_plato').val(),
+                        descripcion: $('#descripcion').val(),
+                        img: $('#img').val(),
+                        nombre_tipocomida: $('#nombre_tipocomida').val(),
+                        precio: parseInt($('#precio').val(), 10)
+                    };
+                
+                    $.ajax({
+                        url: `http://localhost:3001/servicios/actualizar-plato/${id}`,
+                        method: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify(platoActualizado),
+                        success: function(response) {
+                            alert(response.mensaje);
+                            cargarPlatos();
+                        },
+                        error: function() {
+                            console.error("Error al actualizar el plato.");
+                        }
+                    });
+                }
+                
+                // Función auxiliar para mostrar el formulario de actualización
+                function mostrarFormularioActualizar(id, nombre_plato, descripcion, img, nombre_tipocomida, precio) {
+                    $('#nombre_plato').val(nombre_plato);
+                    $('#descripcion').val(descripcion);
+                    $('#img').val(img);
+                    $('#nombre_tipocomida').val(nombre_tipocomida);
+                    $('#precio').val(precio);
+                    
+                    $('#boton-actualizar').off('click').on('click', function() {
+                        actualizarPlato(id);
+                    });
+                }
+
+                function limpiarFormulario() {
+                    $('#nombre_plato').val('');
+                    $('#descripcion').val('');
+                    $('#img').val('');
+                    $('#nombre_tipocomida').val('');
+                    $('#precio').val('');
+                }
+                
+            </script>
+        </div>
+
+        <!-- mesas -->
+        <div id="Mesas" class="hidden">
+            <h2>Mesas</h2>
+            <p>Visualizacion de mesas Campus</p>
+
+
+        </div>
+    </div>
+    </section>
+</body>
+<script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.main-content > div');
+        sections.forEach(section => {
+            section.classList.add('hidden');
+        });
+        document.getElementById(sectionId).classList.remove('hidden');
+    }
+</script>
+</html>

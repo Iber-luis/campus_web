@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Mesas Campus</title>
+</head>
+<body>
+    <div class="Main">
+        <h1>Mesas</h1>
+        <h3>Visual de espacios en campus.</h3>
+        <div class="Contenedor2" id="space-list2">
+            <div class="imagen-carga"><img src="informacion/carga.gif" alt=""></div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        cargarMesas();
+    });
+
+    function cargarMesas() {
+        $.ajax({
+            url: 'http://localhost:3001/servicios/pedir-mesa',
+            method: 'GET',
+            contentType: 'application/json',
+            success: function(mesas) {
+                let output = '';
+                mesas.forEach(mesa => {
+                    let estadoTexto = mesa.estado ? 'OCUPADO' : 'DISPONIBLE';
+                    let imagenSrc = mesa.estado ? `informacion/mesa${Math.floor(Math.random() * 3) + 1}.gif` : 'informacion/mesa_0.png';
+                    
+                    output += `
+                        <div class="caja2">
+                            <img src="${imagenSrc}" alt="">
+                            <h3>${mesa.nombre_mesa}</h3>
+                            <h4>${estadoTexto}</h4>
+                            <p>#${mesa.cantidad_asiento} asientos</p>
+                            <div class="button2"><button onclick="reservarMesa(${mesa.id}, '${mesa.nombre_mesa}','${estadoTexto}')">Reservar</button></div>
+                        </div>
+                    `;
+                });
+                $('.Contenedor2').html(output);
+            },
+            error: function(error) {
+                console.error('Error al cargar las mesas:', error);
+                document.querySelector('.Contenedor2').innerHTML = `
+                    <div class="error-message">
+                        <p>Error al cargar el sistema de mesas. Por favor, intente de nuevo más tarde.</p>
+                    </div>
+                `;
+            }
+        });
+    }
+
+    function reservarMesa(id, nombre_mesa, estadoTexto) {
+        if(estadoTexto=="OCUPADO"){
+            alert('Esta mesa esta reservada');
+        }else{
+            alert(`La ${nombre_mesa} fue seleccionada para reservar.`);
+            localStorage.setItem("nombreMesa", nombre_mesa)
+            window.location.href = 'registro.html';
+        }
+    }
+</script>

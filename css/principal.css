@@ -1,0 +1,914 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+img {
+    width: 100%;
+    border-radius: 10%;
+    object-fit: cover;
+    margin-top: 60px;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+}
+
+
+/* Header Restaurante */
+header.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: transparent; /* Fondo transparente inicialmente */
+    transition: background-color 0.3s ease-in-out; /* Transición suave */
+}
+
+/* Header visible al hacer scroll */
+header.main-header.scrolled {
+    background-color: #fff; /* Color de fondo para el header cuando haces scroll */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para distinguirlo */
+}
+
+/* Tamaño del ícono de menú */
+.toggle-menu img {
+    width: 24px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px;
+}
+
+
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.logo-header,
+li.menu-item a {
+    color: #222; /* Color del texto del menú */
+}
+
+  /* menu header */
+  
+.nav-header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-wrap-header{
+    display: flex;
+    flex-basis: 50%;
+}
+
+ul.main-menu{
+    display: flex;
+    width: 100%;
+    z-index: 99;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+ul.main-menu li.menu-item a {
+    text-decoration: none; /* Quitar la subrayado solo en los enlaces del menú */
+}
+
+  
+ul.main-menu #nav-main-contact{
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    background-color: var(--main-c);
+    color: #fff;
+}
+
+li.menu-item{
+    margin: .75rem;
+    display: flex;
+}
+
+li.menu-item a{
+    padding: .5rem 1rem;
+    color: #000000;
+}
+
+li.menu-item a:hover{
+    color: rgb(9, 255, 0);
+}
+  
+i.toggle-menu img{
+    width: 27px;
+    z-index: 99;
+}
+
+.logo span {
+    color: rgb(9, 255, 0);
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 28px;  /* Ajusta el tamaño de la fuente si es necesario */
+        padding: 0 20px;  /* Agrega más espacio a los lados en pantallas pequeñas */
+    }
+}
+  
+i.toggle-menu{
+    display: none;
+    background-color: #fff;
+    border: none;
+    z-index: 9999;
+}
+  
+input#check{
+    display: none;
+}
+  
+@media (min-width:880px){
+    .header-wrap{
+      padding: .5rem 5rem;
+    }
+}
+  
+@media (min-width:768px){
+    a.logo-header{
+      color: #fff;
+    }
+}
+  
+@media (max-width:768px){
+    header.main-header{
+      margin-bottom: 4rem;
+}
+
+.header-wrap{
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    padding: 0;
+    top: 0;
+    z-index: 9999;
+    height: 60px;
+}
+
+.wrap-logo-header{
+    position: fixed;
+    z-index:999;
+    top: 3%;
+    left: 3%;
+}
+
+@media (max-width: 768px) {
+    .logo p {
+    font-size: 1rem; /* Aumenta el tamaño del texto */
+    margin-top: 20px; /* Mueve el logo hacia abajo */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajuste para centrar el logo y el ícono del menú verticalmente */
+    .header-wrap {
+        display: flex;
+        align-items: center; /* Centra verticalmente el contenido del header */
+        justify-content: space-between; /* Coloca el logo a la izquierda y el ícono del menú a la derecha */
+    }
+
+    /* Ajustes específicos para el ícono del menú */
+    .checkbtn {
+        display: flex;
+        align-items: center; /* Centra el ícono verticalmente */
+        padding: 0; /* Elimina cualquier espacio extra alrededor del ícono */
+        margin-top: -70px; /* Ajusta este valor para subir el ícono del menú */
+    }
+
+    /* Opcional: ajuste del tamaño del ícono */
+    .checkbtn img {
+        width: 24px; /* Ajusta el tamaño del ícono según necesites */
+        height: auto;
+    }
+}
+
+
+.logo-header, li.menu-item a{
+    color: #222;
+}
+  
+i.toggle-menu{
+    display: flex;
+}
+
+ul.main-menu,#nav-main-contact{
+    display: none;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+ul.main-menu{
+    position: fixed;
+    background-color: #fff;
+}
+
+label.checkbtn{
+    position: fixed;
+    right: 3%;
+    top: 3%;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#check:checked ~ ul{
+    display: flex;
+    z-index: 9;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    top: 0;
+    font-size: 2rem;
+    }
+}
+
+/* Hero Section HomePage */
+.wrap-header-hero{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+  
+.hero-home-page{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap-hero-home-page{
+    color: #fff;
+    text-align: center;
+    width: 50%;
+}
+  
+.wrap-hero-home-page p{
+    margin-bottom: 2rem;
+}
+  
+@media (max-width:768px){
+    .wrap-hero-home-page{
+      width: 100%;
+      padding: 1rem;
+    }
+}
+
+
+/* informacion principal */
+
+.presentacion {
+    width: 90%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: row; /* Coloca los elementos en una fila */
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px; /* Añade un espacio entre el texto y la imagen */
+}
+
+
+.informacion h1 {
+    font-size: 2.5rem; /* Ajusta el tamaño del h1 según tus necesidades */
+    
+}
+
+.informacion p {
+    font-size: 1.2rem; /* Ajusta el tamaño del párrafo según tus necesidades */
+    line-height: 1.5; /* Añade espacio entre líneas para mejor legibilidad */
+}
+
+.informacion {
+    max-width: 40%; /* Limita el ancho de la sección de texto para que no ocupe demasiado espacio */
+}
+
+.presentacion--imagen {
+    max-width: 50%; /* Ajusta el tamaño de la imagen para que se alinee mejor con el contenido */
+}
+
+@media (max-width: 768px) {
+    .presentacion {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center;
+        text-align: center;
+        margin-top: 40px; 
+    }
+
+
+.informacion {
+    max-width: 80%; /* Asegura que el texto ocupe más espacio en pantallas pequeñas */
+}
+
+.presentacion--imagen {
+    max-width: 80%; /* Reduce el tamaño de la imagen en pantallas pequeñas */
+    }
+}
+
+/*carrusel */
+.titulo{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 50px;
+}
+
+.slider-box{
+    width: 1280px;
+    height: auto;
+    margin:  50px auto 0;
+    overflow: hidden;
+}
+
+.slider-box ul{
+    display: flex;
+    padding: 0;
+    width: 400%;
+    animation: slide 20s infinite alternate ease-in-out;
+}
+
+.slider-box ul li{
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.texto{
+    position: absolute;
+    text-align: center;
+    padding: 0 250px;
+    top: 250px;
+    color: white;
+}
+
+.texto h2{
+    font-size: 45px;
+    margin-bottom: 35px;
+}
+
+.slider-box img{
+    width: 90%;
+}
+
+@keyframes slide {
+    0% { margin-left: 0; } /* Primera imagen visible */
+    33% { margin-left: 0; } /* Pausa en la primera imagen */
+    34% { margin-left: -100%; } /* Segunda imagen visible */
+    66% { margin-left: -100%; } /* Pausa en la segunda imagen */
+    67% { margin-left: -200%; } /* Tercera imagen visible */
+    100% { margin-left: -200%; } /* Pausa en la tercera imagen */
+}
+
+@media (max-width: 991px){
+    .body{
+        padding: 30px;
+    }
+
+    .slider-box{
+        width: 100%;
+    }
+
+    .texto{
+        padding: 0 25px;
+        top: 60px;
+    }
+
+    .texto h2{
+        font-size: 35px;
+        margin-bottom: 11px;
+    }
+
+    .texto p{
+        font-size: 15px;
+    }
+    
+}
+
+/* Sección platos */
+
+.comida {
+    width: 90%;
+    margin-inline: auto;
+}
+
+/* Swiper Styles */
+
+.swiper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+
+/* Cada tarjeta del slider */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para las tarjetas de producto */
+.plato {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(196, 196, 196, 0.426);
+    width: 100%;
+    max-width: 280px; /* Tamaño máximo de cada tarjeta */
+}
+
+.plato img {
+    width: 200px; /* Ajustar el tamaño de las imágenes */
+    height: auto;
+    filter: drop-shadow(0 0 0.9rem rgb(0, 255, 0));
+}
+
+/* Contenedor de tarjetas */
+.plato {
+    width: 200px; /* Ajustar el ancho de la tarjeta */
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(196, 196, 196, 0.426);
+    transition: transform 0.2s; /* Para efecto hover */
+}
+
+.plato:hover {
+    transform: scale(1.05); /* Aumentar ligeramente el tamaño al pasar el mouse */
+}
+
+.plato img {
+    width: 150px;
+    filter: drop-shadow(0 0 0.9rem rgb(0, 255, 0));
+    margin-top: -25px;
+}
+
+.plato p {
+    font-size: 15px;
+    color: rgb(63, 63, 63);
+}
+
+.plato--info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.plato--info p {
+    color: rgb(9, 255, 0);
+    font-weight: 900;
+}
+
+.plato--info button {
+    background-color: rgb(0, 255, 0);
+    color: rgb(0, 0, 0);
+    font-weight: 900;
+    padding: 5px 12px;
+    border-radius: 50%;
+    font-size: 25px;
+}
+
+.plato--info button:hover {
+    cursor: pointer;
+}
+
+/* Menu Restaurante */
+.column-3{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+.menu-restaurante p {
+    color: #ffffff;
+    margin-top: 80px; /* Ajusta el margen superior para los párrafos */
+}
+
+
+
+.menu-restaurante {
+    background-color: rgb(245, 245, 245);
+    color: #333; /* Cambia a un color oscuro para mejor legibilidad */
+    margin-top: 20px; /* Margen superior común */
+    margin-left: 10px; /* Margen izquierdo común para todas las imágenes */
+    margin-right: 10px; /* Margen derecho común para todas las imágenes */
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* O 'contain' dependiendo de tu necesidad */
+    border-radius: 6px;
+    display: flex;
+    flex-flow: column;
+    padding: 20px; /* Padding interno para evitar que el texto esté pegado a los bordes */
+}
+
+
+.wrap-title-section h2 {
+    margin-top: 15px; /* Mueve hacia abajo */
+    margin-bottom: 10px; /* Ajusta el espacio debajo */
+    text-align: center; /* Centra el texto, si es necesario */
+    font-size: 2rem; /* Cambia el tamaño de fuente si es necesario */
+    color: #333; /* Cambia el color si es necesario */
+}
+
+
+hr{
+    background: var(--main-c);
+    height: 2px;
+    width: 30px;
+    border: none;
+}
+  
+.precio-menu{
+    font-weight: bold;
+
+}
+.precio-menu span{
+    font-size: 2rem;
+}
+  
+@media (max-width:880px){
+    .column-3{
+      grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width:640px){
+    .column-3{
+      grid-template-columns: repeat(1,1fr);
+    }
+}
+
+/* Servicios */
+
+.servicios {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* Cambiar en dispositivos móviles */
+    padding: 100px 0; /* Espaciado superior e inferior */
+    min-height: 300px; /* Asegúrate de que haya suficiente altura */
+}
+
+.servicios-content {
+    text-align: center;
+}
+
+.servicios-content h2 {
+    font-size: 2rem;
+    line-height: 70px;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.servicios-content p {
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 50px;
+    padding: 0 100px; 
+}
+
+.servicios-grupo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 10px; /* Ajusta el espacio entre las imágenes */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+}
+
+.servicio {
+    flex: 1 1 30%; /* Ajusta este valor según el ancho deseado */
+    padding: 10px; /* Reduce el espaciado interior */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.servicio-1 {
+    padding: 0 20px;
+    flex: 1 1 30%; 
+    box-sizing: border-box;
+}
+
+.servicio-1 img {
+    width: 100%; 
+    max-width: 200px; 
+    margin-bottom: 15px;
+}
+
+.servicio-1 h3 {
+    color: #f9fafc;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .servicios-content h2 {
+    font-size: 40px; 
+    line-height: 50px;
+    margin-bottom: 30px;
+}
+
+.servicios-content p {
+    font-size: 16px;
+    padding: 0 20px; 
+}
+
+.servicios-grupo {
+    flex-direction: column;
+    align-items: center; 
+}
+
+.servicio-1 {
+    margin-bottom: 30px; 
+    flex: 1 1 100%; 
+}
+
+.servicio-1 img {
+    max-width: 150px; 
+    }
+}
+
+.servicio img {
+    width: 100%;
+    max-width: 120px; /* Ajusta este valor según el tamaño deseado */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .servicio img {
+        max-width: 100px; /* Tamaño más pequeño para pantallas pequeñas */
+    }
+}
+
+.btn-1 {
+    padding: 10px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(9, 255, 0);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.btn-1:hover {
+    background-color: white;
+    color: rgb(9, 255, 0);
+    cursor: pointer;
+}
+
+
+/* Tarjetas de Blog */
+article.card{
+    max-width: 350px;
+    background-color: #f8f8f8;
+    margin: 1rem;
+    box-shadow: 0px 0px 12px #d7d7d7;
+}
+
+.header-card{
+    display: flex;
+}
+
+.header-card img{
+    border-radius: 8px 8px 0 0;
+    max-height: 200px;
+    height: 200px;
+    width: 100%;
+}
+  
+.categoria-card{
+    margin-top: 1rem;
+}
+  
+.categoria-card span{
+    background: var(--main-c);
+    border-radius: 4px;
+    padding: .2rem .5rem;
+    color: #09ff00;
+}
+  
+.card footer{
+    display: flex;
+    flex-flow: column;
+    padding: 0 1rem;
+}
+  
+.perfil-card{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+  
+.img-perfil-card{
+    display: flex;
+}
+  
+.img-perfil-card img{
+    width: 50px;
+    border-radius: 50%;
+    margin: 1rem 1rem 1rem 0;
+}
+
+.text-perfil-card{
+    display: flex;
+    flex-flow: column;
+}
+
+.text-perfil-card span:nth-child(2){
+    color: #050505; 
+}
+
+  .card-wrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center; 
+    gap: 2rem; 
+}
+
+  
+ @media (max-width:768px){
+    .card-wrap{
+      justify-content: center;
+    }
+}
+
+
+.boton-informacion {
+    margin-top: 20px; /* Espacio por encima del botón */
+    text-align: center; /* Centrar el botón */
+}
+  
+.btn-1 {
+    display: inline-block; /* Para que el botón sea de bloque y se pueda centrar */
+    padding: 10px 15px; /* Espaciado interno del botón */
+    background-color: #000000; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Efecto de transición */
+}
+  
+.btn-1:hover {
+    background-color: #ffffff; /* Color al pasar el ratón */
+    transform: scale(1.05); /* Efecto de escalado al pasar el ratón */
+}
+  
+
+/* Footer de la página */
+
+footer {
+    background-color: rgb(245, 245, 245); /* Cambiar el fondo */
+    color: var(--black-c);
+}
+
+footer ul {
+    padding: 0;
+}
+
+.wrap-footer {
+    display: grid;
+    grid-template-columns: 30% 15% 15% 20%;
+    column-gap: 5%;
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.element-footer h5 {
+    margin: 1rem 0;
+}
+
+.text-element-footer {
+    line-height: 2;
+    padding: 0.5rem; /* Añadir padding para mejorar la legibilidad */
+}
+
+.text-element-footer li {
+    margin-bottom: 0.5rem; /* Espacio entre los elementos de la lista */
+}
+
+.text-element-footer li a {
+    color: var(--main-c);
+    margin-left: 10px; /* Mueve los enlaces un poco hacia la derecha */
+    text-decoration: none;
+}
+
+.text-element-footer li a:hover {
+    text-decoration: underline; /* Opcional: subrayar al pasar el mouse */
+    color: rgb(9, 255, 0);
+}
+
+.rrss-element-footer ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rrss-element-footer img {
+    width: 45px;
+    max-width: 100%; /* Asegura que la imagen escale correctamente */
+    height: auto; /* Mantener la relación de aspecto */
+}
+
+.rrss-element-footer li {
+    margin-right: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.footer-creds {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    color: #576171;
+    font-size: .9rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.legal-creds ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-creds ul li {
+    padding-right: 1rem; /* Espacio entre los enlaces */
+    margin-bottom: 0.5rem; /* Espacio entre los elementos de la lista */
+}
+
+.legal-creds ul li a {
+    color: #576171;
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+/* Espaciado para dispositivos móviles */
+@media (max-width: 768px) {
+.wrap-footer {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.footer-creds {
+    font-size: 0.8rem; /* Ajustar tamaño de fuente para pantallas más pequeñas */
+}
+
+.text-element-footer li {
+    margin-bottom: 0.5rem; /* Espacio entre los elementos de la lista */
+}
+
+.text-element-footer li a {
+    margin-left: 10px; /* Mueve los enlaces un poco hacia la derecha */
+    }
+}
+
+@media (max-width: 480px) {
+    .wrap-footer {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 320px) {
+    .footer-creds {
+        flex-flow: column;
+    }
+}
+
+
+

@@ -1,0 +1,74 @@
+/* Ajuste de tamaño de las tarjetas */
+.plato {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 250px; /* Limita el ancho máximo de las tarjetas */
+    margin: 0 auto;
+}
+
+.plato img {
+    max-width: 80%; /* Reduce el tamaño de la imagen */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.plato h1, .plato h3 {
+    font-size: 18px; /* Reduce el tamaño de la fuente */
+    color: #333;
+}
+
+.plato p {
+    font-size: 13px; /* Texto más pequeño */
+    color: #666;
+}
+
+.plato--info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.plato--info p {
+    font-size: 16px;
+    color: #ff0000;
+}
+
+.plato--info button {
+    background-color: #ffb900;
+    color: #fff;
+    border: none;
+    padding: 8px 15px; /* Botón más pequeño */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Swiper Styling */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide:hover {
+    transform: scale(1.05); /* Efecto de agrandamiento en hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .plato {
+        max-width: 200px; /* Ajuste del ancho en pantallas más pequeñas */
+    }
+
+    .plato h1, .plato h3 {
+        font-size: 16px;
+    }
+
+    .plato p {
+        font-size: 12px;
+    }
+}

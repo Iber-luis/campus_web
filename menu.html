@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+    <script src="https://kit.fontawesome.com/a929e30652.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="container-navbar">
+            <div class="btn-menu">
+                <label for="btn-menu" aria-label="Abrir menú">
+                    <img class="menu-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM4NCAzODQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAxNTQuNjY3OTY5aC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGQ9Im0zNjggMzJoLTM1MmMtOC44MzIwMzEgMC0xNi03LjE2Nzk2OS0xNi0xNnM3LjE2Nzk2OS0xNiAxNi0xNmgzNTJjOC44MzIwMzEgMCAxNiA3LjE2Nzk2OSAxNiAxNnMtNy4xNjc5NjkgMTYtMTYgMTZ6bTAgMCIgZmlsbD0iIzAwMDAwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCI+PC9wYXRoPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAyNzcuMzMyMDMxaC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiPjwvcGF0aD48L2c+PC9zdmc+" alt="Menu Icon" />
+                </label>
+            </div>
+            <!-- barra de buscar -->
+        <div class="container-search">
+            <form action="https://www.google.com/search" class="search" id="search-bar">
+                <input type="search" placeholder="Escribe algo..." name="q" class="search__input">
+                <div class="search__button" id="search-button">
+                    <i class="ri-search-2-line search__icon"></i>
+                    <i class="ri-close-line search__close"></i>
+                </div>
+            </form>
+        </div>
+        </div>
+    </header>
+    
+    
+    <!-- Menú lateral -->
+    <input type="checkbox" id="btn-menu" />
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <li class="menu-item"><a href="principal-web.html">Inicio</a></li>
+                <a href="#">Menú</a>
+                <a href="#">registro-mesas</a>
+                <li class="menu-item"><a href="resgitro_evento.html">registro-evento</a></li>
+                <a href="#">Servicios</a>
+                <a href="#">Blog</a>
+                <a href="#">Contacto</a>
+                <li class="menu-item"><a href="principal-web.html">Salir</a></li>
+            </nav>
+            <label for="btn-menu">✖️</label>
+        </div>
+    </div>
+
+    
+
+    <!-- Menu carro -->
+    <div class="Menubx">
+      <img src="informacion/carrito.png" alt="" title="Menu Pedidos" id="menu-icon">
+      <span class="notification" id="menu-contador">0</span>
+  </div>
+
+  <div class="Menu">
+    <img class="cerramenu" src="informacion/salir.png" alt="" title="Cerrar Menu" id="cerrar-menu">
+    <h2 class="titulo">Tu Pedido</h2>
+    <div class="contenido">
+        <p class="titulo-contenido">Contenido:</p>
+        <div class="cont-contenido"></div>
+    </div>
+    <div class="total">
+        <h2>Total</h2>
+        <div class="total-precio">$0.00</div>
+    </div>
+    <button class="btnPedirmenu" onclick="realizarPedido()">Realizar pedido</button>
+</div>
+
+<section class="menu contenedor">
+    <div class="botones-platillos">
+        <button class="todos btn btn-verde">Todos</button>
+        <button class="ensaladas btn btn-verde">Comidas Rapidas</button>
+        <button class="pasta btn btn-verde">Platos Fuertes</button>
+        <button class="pizza btn btn-verde">Postres</button>
+        <button class="postres btn btn-verde">Jugos Naturales</button>
+        <button class="postres btn btn-verde">Micheladas</button>
+        <button class="postres btn btn-verde">Refrescos</button>
+    </div>
+ </section>
+
+    
+  
+     <!-- seccion productos. pagina  -->
+      <div class="contenerdor-producto">
+        <div class="Contenedor" id="space-list">
+          <div class="imagen-carga"><img src="informacion/carga.gif" alt=""></div>
+        </div>
+      </div>
+
+    
+
+     <!-- footer. pagina  -->
+     <section id="contacto">
+        <footer class="footer" id="contacto">
+          <div class="wrap-footer">
+            <div class="text-element-footer element-footer">
+              <h3>Restaurante Campus</h3>
+              <p>Es el rincón perfecto para los amantes de comidas. Con un ambiente moderno y acogedor, ofrecemos una amplia variedad de platos saludables y deliciosos. Nuestro menú cambia semanalmente para satisfacer los gustos de todos y nuestros precios son muy accesibles. ¡Ven a disfrutar de un ambiente relajado y de la mejor comida casera en el corazón del campus!"</p>
+            </div>
+            <div class="text-element-footer element-footer">
+              <h5>Dirección</h5>
+              <ul>
+                <li>Calle, 82</li>
+                <li>ubicacion: Carepa Antioquia</li>
+                <li>Movil: (+57) 3005386979</li>
+                <li>telefono (604) 900 00 00 </li>
+              </ul>
+            </div>
+            <div class="text-element-footer element-footer">
+              <h5>Más información</h5>
+              <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/">Menu</a></li>
+                <li><a href="/">Nosotros</a></li>
+                <li><a href="/">Servicios</a></li>
+                <li><a href="/">Blog</a></li>
+                <li><a href="/">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="rrss-element-footer element-footer">
+              <h5>Redes Sociales</h5>
+              <ul>
+                <li><a href="/">
+                  <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtNTEyIDc1djM2MmMwIDQxLjM5ODQzOC0zMy42MDE1NjIgNzUtNzUgNzVoLTEyMWwtMzAtMzBoLTMwbC0zMCAzMGgtMTUxYy00MS4zOTg0MzggMC03NS0zMy42MDE1NjItNzUtNzV2LTM2MmMwLTQxLjM5ODQzOCAzMy42MDE1NjItNzUgNzUtNzVoMzYyYzQxLjM5ODQzOCAwIDc1IDMzLjYwMTU2MiA3NSA3NXptMCAwIiBmaWxsPSIjNzk4NGViIi8+PHBhdGggZD0ibTUxMiA3NXYzNjJjMCA0MS4zOTg0MzgtMzMuNjAxNTYyIDc1LTc1IDc1aC0xMjFsLTMwLTMwaC0xNXYtNDgyaDE2NmM0MS4zOTg0MzggMCA3NSAzMy42MDE1NjIgNzUgNzV6bTAgMCIgZmlsbD0iIzQ2NjFkMSIvPjxwYXRoIGQ9Im0zMTYgMTgwdjYwaDkwbC0xNSA5MGgtNzV2MTgyaC05MHYtMTgyaC02MHYtOTBoNjB2LTYwYzAtMzMuMzAwNzgxIDE4LjMwMDc4MS02Mi40MDIzNDQgNDUtNzggMTMuMTk5MjE5LTcuNSAyOC44MDA3ODEtMTIgNDUtMTJoOTB2OTB6bTAgMCIgZmlsbD0iI2VjZWNmMSIvPjxwYXRoIGQ9Im0zMTYgMTgwdjYwaDkwbC0xNSA5MGgtNzV2MTgyaC00NXYtNDEwYzEzLjE5OTIxOS03LjUgMjguODAwNzgxLTEyIDQ1LTEyaDkwdjkwem0wIDAiIGZpbGw9IiNlMmUyZTciLz48L3N2Zz4=" alt="icono redes sociales">
+                </a></li>
+                <li><a href="">
+                  <img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMjU2IDBjLTE0MC42OTkyMTkgMC0yNTYgMTE1LjMwMDc4MS0yNTYgMjU2IDAgNDYuNSAxMi41OTc2NTYgOTEuNSAzNi4zMDA3ODEgMTMxLjEwMTU2MmwtMzYuMzAwNzgxIDEyNC44OTg0MzggMTI0Ljg5ODQzOC0zNi4zMDA3ODFjMzkuNjAxNTYyIDIzLjY5OTIxOSA4NC42MDE1NjIgMzYuMzAwNzgxIDEzMS4xMDE1NjIgMzYuMzAwNzgxIDE0MC42OTkyMTkgMCAyNTYtMTE1LjMwMDc4MSAyNTYtMjU2cy0xMTUuMzAwNzgxLTI1Ni0yNTYtMjU2em0wIDAiIGZpbGw9IiMwMGRkN2IiLz48cGF0aCBkPSJtNTEyIDI1NmMwIDE0MC42OTkyMTktMTE1LjMwMDc4MSAyNTYtMjU2IDI1NnYtNTEyYzE0MC42OTkyMTkgMCAyNTYgMTE1LjMwMDc4MSAyNTYgMjU2em0wIDAiIGZpbGw9IiMwMGNjNzEiLz48cGF0aCBkPSJtNDE3LjE5OTIxOSAzNjQuMzAwNzgxLTEyIDExLjY5OTIxOWMtMTYuODAwNzgxIDE2LjgwMDc4MS01NS44MDA3ODEgMTUuNTk3NjU2LTgwLjY5OTIxOSAxMC44MDA3ODEtMjIuMTk5MjE5LTQuMTk5MjE5LTQ2LTE0LjEwMTU2Mi02OC41LTI3LjkwMjM0My02MS4xOTkyMTktMzcuMTk5MjE5LTExNi42OTkyMTktMTAzLjE5OTIxOS0xMzAuMTk5MjE5LTE2Mi41OTc2NTctOS4zMDA3ODEtNDAuMjAzMTI1LTQuMTk5MjE5LTc1IDktODguNWwxMi0xMmM2LjYwMTU2My02LjMwMDc4MSAxNy4wOTc2NTctNi4zMDA3ODEgMjMuNjk5MjE5IDBsNDcuNjk5MjE5IDQ3LjY5OTIxOWMzLjMwMDc4MSAzLjMwMDc4MSA1LjEwMTU2MiA3LjUgNS4xMDE1NjIgMTJzLTEuODAwNzgxIDguNjk5MjE5LTUuMTAxNTYyIDEybC0xMiAxMS42OTkyMTljLTEyLjg5ODQzOCAxMy4xOTkyMTktMTIuODk4NDM4IDM0LjUgMCA0Ny42OTkyMTlsNDkuODAwNzgxIDQ4LjkwMjM0MyAyOS4wOTc2NTYgMjguODAwNzgxYzEzLjIwMzEyNSAxMy4xOTkyMTkgMzUuNTAzOTA2IDEzLjE5OTIxOSA0OC43MDMxMjUgMGwxMS42OTkyMTktMTIuMDAzOTA2YzYuMzAwNzgxLTYgMTcuNjk5MjE5LTYgMjQgMGw0Ny42OTkyMTkgNDcuNzAzMTI1YzYuMzAwNzgxIDYuNTk3NjU3IDYuNjAxNTYyIDE3LjA5NzY1NyAwIDI0em0wIDAiIGZpbGw9IiNlY2VjZjEiLz48cGF0aCBkPSJtNDE3LjE5OTIxOSAzNjQuMzAwNzgxLTEyIDExLjY5OTIxOWMtMTYuODAwNzgxIDE2LjgwMDc4MS01NS44MDA3ODEgMTUuNTk3NjU2LTgwLjY5OTIxOSAxMC44MDA3ODEtMjIuMTk5MjE5LTQuMTk5MjE5LTQ2LTE0LjEwMTU2Mi02OC41LTI3LjkwMjM0M3YtODMuMDk3NjU3bDI5LjA5NzY1NiAyOC44MDA3ODFjMTMuMjAzMTI1IDEzLjE5OTIxOSAzNS41MDM5MDYgMTMuMTk5MjE5IDQ4LjcwMzEyNSAwbDExLjY5OTIxOS0xMi4wMDM5MDZjNi4zMDA3ODEtNiAxNy42OTkyMTktNiAyNCAwbDQ3LjY5OTIxOSA0Ny43MDMxMjVjNi4zMDA3ODEgNi41OTc2NTcgNi42MDE1NjIgMTcuMDk3NjU3IDAgMjR6bTAgMCIgZmlsbD0iI2UyZTJlNyIvPjwvc3ZnPg==" alt="icono redes sociales">
+                </a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-creds">
+            <div class="copy-creds">
+              <p>RHCORP ©2024 · Todos los derechos reservados.</p>
+            </div>
+            <div class="legal-creds">
+              <ul>
+                <li><a href="">Política de Privacidad</a></li>
+                <li><a href="">Política de Cookies</a></li>
+                <li><a href="">Aviso Legal</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer> 
+       </section>
+      
+       <script>
+        let menu = {};
+    
+    function agregarpedido(id,nombre,precio){
+        if (menu[id]) {
+            menu[id].cantidad += 1;
+            menu[id].total += precio;
+        } else {
+            menu[id] = {
+                nombre: nombre,
+                cantidad: 1,
+                total: precio
+            };
+        }
+    
+        actualizarMuenulateral();
+        actualizarNotificacion();
+    }
+    
+    function restarPedido(id) {
+        if (menu[id] && menu[id].cantidad > 0) {
+            menu[id].cantidad -= 1;
+            menu[id].total -= menu[id].total / (menu[id].cantidad + 1);
+    
+            if (menu[id].cantidad === 0) {
+                delete menu[id];
+            }
+        }
+        actualizarMuenulateral();
+        actualizarNotificacion();
+    }
+    
+    function actualizarMuenulateral() {
+        let output = '';
+        let totalGeneral = 0;
+    
+        for (let id in menu) {
+            const item = menu[id];
+            totalGeneral += item.total;
+            output += `
+                <div class="menu-item">
+                    <p>Producto: ${item.nombre}</p>
+                    <p>Cantidad: ${item.cantidad}</p>
+                    <p>Total: $${item.total.toFixed(2)}</p>
+                    <button onclick="restarPedido(${id})">Restar</button>
+                </div>
+            `;
+        }
+    
+        document.querySelector('.cont-contenido').innerHTML = output;
+        document.querySelector('.total-precio').textContent = `$${totalGeneral.toFixed(2)}`;
+    }
+    
+    function actualizarNotificacion() {
+        let totalCantidad = 0;
+    
+        for (let id in menu) {
+            totalCantidad += menu[id].cantidad;
+        }
+    
+        const notificationElement = document.querySelector('#menu-contador');
+        if (totalCantidad > 0) {
+            notificationElement.textContent = totalCantidad;
+            notificationElement.style.display = 'block';
+        } else {
+            notificationElement.style.display = 'none';
+        }
+    }
+    
+    
+    
+    function realizarPedido() {
+        let platos = [];
+        let precios = [];
+    
+        for (let id in menu) {
+            platos.push(menu[id].nombre);
+            precios.push(menu[id].total.toFixed(2));
+        }
+    
+        if (platos.length === 0) {
+            alert("No hay productos en el pedido.");
+            return;
+        }
+    
+        const nombreMesa = localStorage.getItem("nombreMesa");
+        const nombreUsuario = localStorage.getItem("nombreUsuario");
+    
+        const pedidoData = {
+            platos: platos.join(', '),
+            precios: precios.join(', '),
+            nombreMesa: nombreMesa,
+            nombreUsuario: nombreUsuario
+        };
+    
+        $.ajax({
+            url: 'http://localhost:3001/servicios/guardar-pedido',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(pedidoData),
+            success: function(response) {
+                alert("Pedido realizado con éxito!");
+                menu = {};
+                actualizarMuenulateral();
+                actualizarNotificacion();
+                window.location.href = 'mesas.html';
+            },
+            error: function(error) {
+                console.error("Error al realizar el pedido:", error);
+                alert("Ocurrió un error al procesar el pedido.");
+            }
+        });
+    } 
+    </script>
+    
+    <script>
+        const menuIcon = document.querySelector("#menu-icon");
+        const menu2 = document.querySelector(".Menu")
+        const closeMenu = document.querySelector("#cerrar-menu");
+    
+        menuIcon.addEventListener("click", () => {
+            menu2.classList.add("active");
+            console.log("mostar");
+        })
+    
+        closeMenu.addEventListener("click", () => {
+            menu2.classList.remove("active");
+        })
+    </script>
+
+      <!-- Cierre de footer. pagina  -->
+
+    <script src="java/menu-lateral.js"></script>
+    <script src="java/main.js"></script>
+    <script src="java/producto.js"></script>
+
+      
+    
+    
+    
+</body>
+</html>

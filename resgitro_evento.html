@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evento</title>
+    <script src="https://kit.fontawesome.com/a929e30652.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/regis-eventos.css">
+</head>
+<body>
+
+     <a href="menu.html" class="icono-regresar">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <div class="contenedor">
+        <div class="titulo">Registro Eventos</div>
+        <p>¿Estás pensando en disfrutar de una deliciosa comida en Campus Restaurante? 
+        ¡No esperes más y reserva un evento importante en familia o cumpleaños como lo desees hoy mismo!</p>
+        <form id="form-validar" novalidate>
+            <div class="form-grupo">
+                <span>Nombre</span>
+                <input type="text" placeholder="nombre y apellido" required>
+                <small>por favor ingresa su nombre</small>
+            </div>
+            <div class="form-grupo">
+                <span>Tipo de evento</span>
+                <select name="seleciona" required>
+                    <option selected>Seleciona</option>
+                    <option>Cumpleaño</option>
+                    <option>Aniversario</option>
+                    <option>Familiar</option>
+                    <option>Grados</option>
+                    <option>Otro</option>
+                </select>
+                <small>por favor digite una opcion</small>
+            </div>
+            <div class="form-grupo">
+                <span>Fecha</span>
+                <input type="datetime-local" placeholder="" required>
+                <small>por favor digite la fecha y hora</small>
+            </div>
+            <div class="form-grupo">
+                <span>telefono</span>
+                <input type="number" placeholder="31425..." required>
+                <small>por favor digite tu telefono</small>
+            </div>
+            <div class="form-grupo">
+                <span>Numero de personas</span>
+                <input type="number" placeholder="1,2,3,4,5..." required>
+                <small>por favor digite el numero de personas</small>
+            </div>
+            <div class="form-grupo">
+                <span>Descripcion</span>
+                <textarea name="mensage"  placeholder="agrega una descripcion" ></textarea>
+            </div>
+            <div class="button">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+
+  <script src="/java/registro.js"></script>
+    
+
+</body>
+</html>

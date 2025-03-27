@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/productos.css">
+</head>
+<body>
+    
+    <main class="comida">
+        <h2 class="comida--titulo">Platos populares</h2>
+
+        <!-- Swiper Container -->
+        <div class="swiper productos-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <article class="plato">
+                        <img src="img-productos/plato-fuertes/hamburguesa.png" alt="Hamburguesa">
+                        <h1>Hamburguesa de Carne</h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="plato--info">
+                            <p>$12.99</p>
+                            <button type="button">+</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide">
+                    <article class="plato">
+                        <img src="img-productos/plato-fuertes/pollo-frito.png" alt="Pollo frito">
+                        <h1>Pollo frito</h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="plato--info">
+                            <p>$12.99</p>
+                            <button type="button">+</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide">
+                    <article class="plato">
+                        <img src="img-productos/plato-fuertes/hamburguesa-XL.png" alt="Hamburguesa XL">
+                        <h1>Super hamburguesa</h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="plato--info">
+                            <p>$12.99</p>
+                            <button type="button">+</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide">
+                    <article class="plato">
+                        <img src="img-productos/plato-fuertes/papas-fritas.png" alt="Papas Fritas">
+                        <h1>Papas Fritas</h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <div class="plato--info">
+                            <p>$7.99</p>
+                            <button type="button">+</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.productos-swiper', {
+            effect: 'coverflow',
+            grabcursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            loop: true,
+            spaceBetween: 30,  // Espacio entre las tarjetas
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 300, // Profundidad menor para reducir la sensación de rotación
+                modifier: 1,
+                slideShadows: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            }
+        });  
+</script>
+

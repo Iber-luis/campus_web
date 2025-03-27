@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Registro</title>
+</head>
+<body>
+    <div class="Main2">
+        <h1>Registro</h1>
+        <h3>Ingresa tus datos para ordenar.</h3>
+        <div class="Contenedor3">
+            <form id="registroForm">
+                <div class="ip-nombre_usuario"><p>Nombre:</p><input type="text" id="nombre" placeholder="Nombre: (Mario *****)" required></div>
+                <div class="ip-cc"><p>CC:</p><input type="text" id="cc" placeholder="Cedula: (100123****)" required></div>
+                <div class="ip-telefonbo"><p>Telefono:</p><input type="tel" id="telefono" placeholder="Telefono: (3214567***)"></div>
+                <div class="buttons">
+                    <button class="btn-realizar_registro">Cancelar</button>
+                    <button class="btn-realizar_registro">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.getElementById('registroForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const nombre = document.getElementById('nombre').value;
+        const cc = document.getElementById('cc').value;
+        const telefono = document.getElementById('telefono').value;
+
+        localStorage.setItem("nombreUsuario", nombre);
+        localStorage.setItem("ccUsuario", cc);
+        localStorage.setItem("telefonoUsuario", telefono);
+        const nombreMesa = localStorage.getItem("nombreMesa");
+        
+        const datosRegistro = {
+            nombre_mesa: nombreMesa,
+            nombre_usuario: nombre,
+            cc: cc,
+            telefono: telefono
+        };
+
+        $.ajax({
+            url: 'http://localhost:3001/servicios/enviar-registro',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(datosRegistro),
+            success: function(response) {
+                alert("Solicitud enviada para revisión.");
+                window.location.href = "validar.html"; // Redirige a una página de espera
+            },
+            error: function(error) {
+                console.error("Error al enviar el registro:", error);
+                alert("Ocurrió un error al procesar la solicitud.");
+            }
+        });
+        //
+        /*window.location.href = "validar.html";*/
+    });
+</script>
+</html>

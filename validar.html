@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/menu.css">
+    <title>Validar Campus</title>
+</head>
+<body>
+    <div class="Main2" id="main-pantallacarga">
+        <h1>Validación</h1>
+        <h3>Espera a obtener permiso de ingreso.</h3>
+        <div class="Contenedor4" id="space-list2">
+            <h4>Esperando a ser validado...</h4>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function verificarPermiso() {
+            const nombreUsuario = localStorage.getItem("nombreUsuario");
+            
+            $.ajax({
+                url: `http://localhost:3001/servicios/verificar-permiso/${nombreUsuario}`,
+                method: 'GET',
+                success: function(response) {
+                    if (response.permitido) {
+                        alert("Permiso concedido. Redirigiendo al menú...");
+                        window.location.href = 'menu.html';
+                    } else if (response.denegado) { 
+                        alert("Acceso denegado. Su solicitud no fue aprobada.");
+                        window.location.href = 'mesas.html';
+                    }
+                },
+                error: function() {
+                    console.error("Error al verificar el permiso.");
+                }
+            });
+        }
+
+        function tiempoexpiracion(){
+            alert("El tiempo a expirado su solicitud no fue atendida");
+            window.location.href = 'mesas.html';
+        }
+        setInterval(verificarPermiso, 7000);
+        setInterval(tiempoexpiracion, 300000);
+
+        window.addEventListener('beforeunload', (event) => {
+            event.preventDefault();
+            event.returnValue = '';
+            eliminarSolicitud();
+        });
+
+        const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+        function eliminarSolicitud() {
+            $.ajax({
+                url: `http://localhost:3001/servicios/eliminar-solicitud/${nombreUsuario}`,
+                method: 'DELETE',
+                success: function(response) {
+                    console.log("Solicitud eliminada:", response);
+                },
+                error: function() {
+                    console.error("Error al eliminar la solicitud.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
