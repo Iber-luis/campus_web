@@ -4,7 +4,7 @@ const conexion = require('../dbConnection');
 const fs = require('fs');
 
 router.get('/pedir-mesa', (req, res) => {
-    conexion.query('SELECT id, nombre_mesa, cantidad_asiento, estado FROM mesa', (error, resultados) => {
+    conexion.pool('SELECT id, nombre_mesa, cantidad_asiento, estado FROM mesa', (error, resultados) => {
         if (error) {
             console.error('Error en la consulta:', error);
             res.status(500).json({ error: 'Error en la consulta' });
