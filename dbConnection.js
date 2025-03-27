@@ -9,7 +9,7 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false },
 });
 
-client.connect()
+pool.connect()
   .then(() => {
     console.log('Conexión exitosa a la base de datos');
   })
