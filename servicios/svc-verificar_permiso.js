@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const conexion = require('../dbConnection');
+const { pool } = require('../dbConnection'); // Usar pool para la conexión
 
 router.get('/verificar-permiso/:nombreUsuario', (req, res) => {
     const nombreUsuario = req.params.nombreUsuario;
 
-    const sql = 'SELECT estado FROM solicitudes WHERE nombre_usuario = ?';
+    const sql = 'SELECT estado FROM solicitudes WHERE nombre_usuario = $1';
 
-    conexion.query(sql, [nombreUsuario], (err, resultados) => {
+    pool.query(sql, [nombreUsuario], (err, resultados) => {
         if (err) {
             console.error("Error al verificar el permiso:", err);
             return res.status(500).send("Error al verificar el permiso");
         }
 
-        if (resultados.length > 0) {
-            const estado = resultados[0].estado;
+        if (resultados.rows.length > 0) {
+            const estado = resultados.rows[0].estado;
             if (estado === 'permitido') {
                 res.json({ permitido: true, denegado: false });
             } else if (estado === 'rechazado') {
@@ -22,6 +22,7 @@ router.get('/verificar-permiso/:nombreUsuario', (req, res) => {
             } else {
                 res.json({ permitido: false, denegado: false });
             }
+            // Llamamos a eliminarSolicitudes después de responder al cliente
             eliminarSolicitudes();
         } else {
             res.json({ permitido: false, denegado: false });
@@ -30,13 +31,13 @@ router.get('/verificar-permiso/:nombreUsuario', (req, res) => {
 });
 
 function eliminarSolicitudes() {
-    const sqlDelete = 'DELETE FROM solicitudes WHERE estado IN (?, ?)';
+    const sqlDelete = 'DELETE FROM solicitudes WHERE estado IN ($1, $2)';
 
-    conexion.query(sqlDelete, ['rechazado', 'permitido'], (err, resultados) => {
+    pool.query(sqlDelete, ['rechazado', 'permitido'], (err, resultados) => {
         if (err) {
             console.error("Error al eliminar solicitudes:", err);
         } else {
-            console.log(`Se han eliminado ${resultados.affectedRows} solicitudes.`);
+            console.log(`Se han eliminado ${resultados.rowCount} solicitudes.`);
         }
     });
 }

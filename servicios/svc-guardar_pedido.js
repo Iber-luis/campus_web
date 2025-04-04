@@ -1,20 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const conexion = require('../dbConnection');
+const { pool } = require('../dbConnection');  // Usar 'pool' desde el archivo de conexión
 
 router.post('/guardar-pedido', (req, res) => {
     const { platos, precios, nombreMesa, nombreUsuario } = req.body;
-    const sql = `INSERT INTO pedido (platos, precios, nombre_mesa, nombre_usuario) VALUES (?, ?, ?, ?)`;
+
+    // Consulta para insertar el pedido
+    const sql = `INSERT INTO pedido (platos, precios, nombre_mesa, nombre_usuario) 
+                 VALUES ($1, $2, $3, $4)`;  // Usar parámetros $1, $2, $3, $4
     
-    conexion.query(sql, [platos, precios, nombreMesa, nombreUsuario], (err, resultado) => {
+    pool.query(sql, [platos, precios, nombreMesa, nombreUsuario], (err, resultado) => {  // Usar 'pool.query'
         if (err) {
             console.error("Error al guardar el pedido:", err);
-            res.status(500).send("Error al guardar el pedido");
-        } 
+            return res.status(500).send("Error al guardar el pedido");
+        }
 
-        const sqlUpdateMesa = `UPDATE mesa SET estado = 1 WHERE nombre_mesa = ?`;
-
-        conexion.query(sqlUpdateMesa, [nombreMesa], (err, resultado) => {
+        // Actualizar el estado de la mesa
+        const sqlUpdateMesa = `UPDATE mesa SET estado = 1 WHERE nombre_mesa = $1`;  // Usar parámetro $1
+        
+        pool.query(sqlUpdateMesa, [nombreMesa], (err, resultado) => {  // Usar 'pool.query'
             if (err) {
                 console.error("Error al actualizar el estado de la mesa:", err);
                 return res.status(500).send("Error al actualizar el estado de la mesa");

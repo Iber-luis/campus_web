@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const conexion = require('../dbConnection');
+const { pool } = require('../dbConnection');  // Importa el 'pool' correctamente
 
 router.post('/enviar-registro', (req, res) => {
     const { nombre_mesa, nombre_usuario, cc, telefono } = req.body;
-    const sql = `INSERT INTO solicitudes (nombre_mesa, nombre_usuario, cc, telefono, estado) VALUES (?, ?, ?, ?, 'pendiente')`;
+    const sql = `INSERT INTO solicitudes (nombre_mesa, nombre_usuario, cc, telefono, estado) VALUES ($1, $2, $3, $4, 'pendiente')`;  // Usar parámetros $1, $2, $3, $4
 
-    conexion.query(sql, [nombre_mesa, nombre_usuario, cc, telefono], (err, resultado) => {
+    pool.query(sql, [nombre_mesa, nombre_usuario, cc, telefono], (err, resultado) => {  // Cambié conexion.query por pool.query
         if (err) {
             console.error("Error al guardar la solicitud:", err);
-            res.status(500).send("Error al guardar la solicitud");
-        } else {
-            res.send("Solicitud guardada para revisión");
+            return res.status(500).send("Error al guardar la solicitud");
         }
+        res.send("Solicitud guardada para revisión");
     });
 });
 
 module.exports = router;
+
