@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router(); // Usar el router de Express
-const conexion = require('../dbConnection'); // Asegúrate de que la ruta sea correcta
+const router = express.Router();  // Usar el router de Express
+const { pool } = require('../dbConnection');  // Importar el 'pool' correctamente
 const fs = require('fs');
 
 router.use((req, res, next) => {
@@ -10,8 +10,8 @@ router.use((req, res, next) => {
 });
 
 router.get('/pedir-plato', (req, res) => {
-    // Ejemplo de consulta a la base de datos
-    conexion.query('SELECT * FROM plato', (error, resultados) => {
+    // Ejemplo de consulta a la base de datos usando 'pool.query'
+    pool.query('SELECT * FROM plato', (error, resultados) => {
         if (error) {
             console.error('Error en la consulta:', error);
             res.status(500).json({ error: 'Error en la consulta' });
@@ -19,7 +19,7 @@ router.get('/pedir-plato', (req, res) => {
         }
 
         // Guardar los resultados en un archivo JSON
-        fs.writeFile('resultados.json', JSON.stringify(resultados, null, 2), (err) => {
+        fs.writeFile('resultados.json', JSON.stringify(resultados.rows, null, 2), (err) => {  // Asegúrate de acceder a 'resultados.rows'
             if (err) {
                 console.error('Error al guardar el archivo:', err);
                 res.status(500).json({ error: 'Error al guardar el archivo' });
@@ -28,9 +28,9 @@ router.get('/pedir-plato', (req, res) => {
             console.log('Resultados guardados en resultados.json');
 
             // Enviar los resultados como respuesta
-            res.json(resultados);
+            res.json(resultados.rows);  // Devolver solo los resultados de la consulta
         });
     });
 });
 
-module.exports = router; // Exportar el router
+module.exports = router;  // Exportar el router
