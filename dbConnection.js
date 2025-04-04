@@ -1,3 +1,4 @@
+// dbConnection.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -18,6 +19,4 @@ pool.connect()
   });
 
 // Exporta el pool para usarlo en otros archivos
-module.exports = pool;
-
-
+module.exports = { pool };

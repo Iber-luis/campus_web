@@ -1,6 +1,7 @@
+// svc-pedir_mesa.js
 const express = require('express');
 const router = express.Router();
-const { pool } = require('../dbConnection');
+const { pool } = require('../dbConnection');  // Asegúrate de que la ruta es correcta
 const fs = require('fs');
 
 router.get('/pedir-mesa', (req, res) => {
@@ -11,7 +12,7 @@ router.get('/pedir-mesa', (req, res) => {
             return;
         }
 
-        fs.writeFile('mesas.json', JSON.stringify(resultados, null, 2), (err) => {
+        fs.writeFile('mesas.json', JSON.stringify(resultados.rows, null, 2), (err) => {
             if (err) {
                 console.error('Error al guardar el archivo:', err);
                 res.status(500).json({ error: 'Error al guardar el archivo' });
@@ -19,7 +20,7 @@ router.get('/pedir-mesa', (req, res) => {
             }
             console.log('Resultados guardados en mesas.json');
 
-            res.json(resultados);
+            res.json(resultados.rows);
         });
     });
 });
