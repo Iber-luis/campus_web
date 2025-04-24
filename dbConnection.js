@@ -6,7 +6,7 @@ const pool = new Pool({
   port: 5432,
   user: 'root',
   password: 'CVzQIR70nChKa9ovRb1Vom3NFo5GrvQ3',
-  database: 'campus_89ds',
+  database: 'campus_meby',
   ssl: { rejectUnauthorized: false },
 });
 
