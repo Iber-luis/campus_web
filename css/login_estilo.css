@@ -229,4 +229,28 @@
       border-top-right-radius: 0;
     }
   }
+
+  select {
+    appearance: none; /* Oculta el estilo nativo */
+    -webkit-appearance: none; /* Safari/Chrome */
+    -moz-appearance: none; /* Firefox */
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Oculta el borde del contenedor */
+  .form label {
+    overflow: hidden;
+  }
+  
+  /* Opcional: muestra solo una flechita de fondo personalizada */
+  select::after {
+    content: "";
+  }
+  
   
