@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/login_estilo.css">
-    <title>Login</title>
 </head>
 <body>
+
     <!-- Registro -->
     <div class="container-form register">
         <div class="information">
             <div class="info-childs">
                 <h2>Bienvenido</h2>
-                <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
+                <p>Para unirte a nuestra comunidad por favor Inicia Sesión</p>
                 <input type="button" value="Iniciar Sesión" id="sign-in">
             </div>
         </div>
@@ -27,28 +27,22 @@
                 <div class="icons">
                     <i class='bx bxl-google'></i>
                     <i class='bx bxl-facebook'></i>
-                    <i class='bx bxl-linkedin' ></i>
+                    <i class='bx bxl-linkedin'></i>
                 </div>
-                <p>o usa tu email para registrarte</p>
+                <p>o usa tu correo electrónico para registrarte</p>
                 <form class="form form-register" id="register-form" novalidate>
-                    <div>
-                        <label>
-                            <i class='bx bx-user' ></i>
-                            <input type="text" placeholder="Nombre Usuario" name="userName" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label >
-                            <i class='bx bx-envelope' ></i>
-                            <input type="email" placeholder="Correo Electronico" name="userEmail" required>
-                        </label>
-                    </div>
-                   <div>
-                        <label>
-                            <i class='bx bx-lock-alt' ></i>
-                            <input type="password" placeholder="Contraseña" name="userPassword" required>
-                        </label>
-                   </div>
+                    <label>
+                        <i class='bx bx-user'></i>
+                        <input type="text" name="userName" placeholder="Nombre de Usuario" required>
+                    </label>
+                    <label>
+                        <i class='bx bx-envelope'></i>
+                        <input type="email" name="userEmail" placeholder="Correo Electrónico" required>
+                    </label>
+                    <label>
+                        <i class='bx bx-lock-alt'></i>
+                        <input type="password" name="userPassword" placeholder="Contraseña" required>
+                    </label>
                     <input type="submit" value="Registrarse">
                     <div class="alerta-error">Todos los campos son obligatorios</div>
                     <div class="alerta-exito">Te registraste correctamente</div>
@@ -61,8 +55,8 @@
     <div class="container-form login hide">
         <div class="information">
             <div class="info-childs">
-                <h2>¡¡Bienvenido nuevamente!!</h2>
-                <p>Para unirte a nuestra comunidad por favor Inicia Sesión con tus datos</p>
+                <h2>Bienvenido nuevamente</h2>
+                <p>Inicia sesión con tus datos</p>
                 <input type="button" value="Registrarse" id="sign-up">
             </div>
         </div>
@@ -72,109 +66,44 @@
                 <div class="icons">
                     <i class='bx bxl-google'></i>
                     <i class='bx bxl-facebook'></i>
-                    <i class='bx bxl-linkedin' ></i>
+                    <i class='bx bxl-linkedin'></i>
                 </div>
-                <p>o Iniciar Sesión con una cuenta</p>
+                <p>o usa tu correo electrónico</p>
                 <form class="form form-login" id="login-form" novalidate>
-                    <div>
-                        <label >
-                            <i class='bx bx-envelope' ></i>
-                            <input type="email" placeholder="Correo Electronico" name="userEmail" required>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            <i class='bx bx-lock-alt' ></i>
-                            <input type="password" placeholder="Contraseña" name="userPassword" required>
-                        </label>
-                    </div>
+                    <label>
+                        <i class='bx bx-envelope'></i>
+                        <input type="email" name="userEmail" placeholder="Correo Electrónico" required>
+                    </label>
+                    <label>
+                        <i class='bx bx-lock-alt'></i>
+                        <input type="password" name="userPassword" placeholder="Contraseña" required>
+                    </label>
                     <input type="submit" value="Iniciar Sesión">
                     <div class="alerta-error">Todos los campos son obligatorios</div>
-                    <div class="alerta-exito">Te registraste correctamente</div>
+                    <div class="alerta-exito">Inicio de sesión exitoso</div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/register.js"></script>
-    <script src="js/login.js"></script>
+    <script src="java/login.js"></script>
+    <script src="java/registro.js"></script>
     <script src="java/script.js.js"></script>
 
     <script>
-        $(document).ready(function() {
-            // Formulario de login
-            $('#login-form').on('submit', async function(e) {
-                e.preventDefault();
+        // Cambio entre login y registro
+        document.getElementById('sign-in').addEventListener('click', () => {
+            document.querySelector('.register').classList.add('hide');
+            document.querySelector('.login').classList.remove('hide');
+        });
 
-                const userEmail = $('input[name="userEmail"]').val();
-                const userPassword = $('input[name="userPassword"]').val();
-
-                if (!userEmail || !userPassword) {
-                    alert('Todos los campos son obligatorios');
-                    return;
-                }
-
-                try {
-                    const response = await fetch('https://campus-web-ohbo.onrender.com/api/auth/login', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ userEmail, userPassword })
-                    });
-
-                    const data = await response.json();
-                    if (response.ok) {
-                        alert(`Bienvenido, ${data.nombre_usuario}. Rol: ${data.rol}`);
-                        localStorage.setItem("usuario", JSON.stringify(data));
-
-                        // Redirige según el rol
-                        if (data.rol === 'admin') {
-                            window.location.href = 'admin.html';
-                        } else {
-                            window.location.href = 'index.html';
-                        }
-                    } else {
-                        alert(data.error || 'Error al iniciar sesión');
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert('Error al conectar con el servidor');
-                }
-            });
-
-            // Formulario de registro
-            $('#register-form').on('submit', async function(e) {
-                e.preventDefault();
-
-                const userName = $('input[name="userName"]').val();
-                const userEmail = $('input[name="userEmail"]').val();
-                const userPassword = $('input[name="userPassword"]').val();
-
-                if (!userName || !userEmail || !userPassword) {
-                    alert('Todos los campos son obligatorios');
-                    return;
-                }
-
-                try {
-                    const response = await fetch('https://campus-web-ohbo.onrender.com/api/auth/register', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ nombre_usuario: userName, userEmail, userPassword })
-                    });
-
-                    const data = await response.json();
-                    if (response.ok) {
-                        alert('Registro exitoso');
-                        window.location.href = 'login.html'; // Redirige al login después de registrarse
-                    } else {
-                        alert(data.error || 'Error al registrar usuario');
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert('Error al conectar con el servidor');
-                }
-            });
+        document.getElementById('sign-up').addEventListener('click', () => {
+            document.querySelector('.login').classList.add('hide');
+            document.querySelector('.register').classList.remove('hide');
         });
     </script>
 </body>
 </html>
+

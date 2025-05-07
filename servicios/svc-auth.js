@@ -4,12 +4,7 @@ const { pool } = require('../dbConnection');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const authRoutes = require('./servicios/svc-auth');
-app.use(express.json());
-app.use('/api/auth', authRoutes);
-
-
-// Ruta para registrar un nuevo usuario
+// Registro
 router.post('/register', async (req, res) => {
   const { nombre_usuario, userEmail, userPassword } = req.body;
 
@@ -18,17 +13,26 @@ router.post('/register', async (req, res) => {
   }
 
   try {
+    // Verificar si el correo ya existe
+    const check = await pool.query('SELECT * FROM usuario WHERE correo = $1', [userEmail]);
+    if (check.rows.length > 0) {
+      return res.status(400).json({ error: 'El correo ya está registrado' });
+    }
+
     const hashedPassword = await bcrypt.hash(userPassword, 10);
-    const query = 'INSERT INTO usuario (nombre_usuario, correo, contrasena) VALUES ($1, $2, $3)';
-    await pool.query(query, [nombre_usuario, userEmail, hashedPassword]);
+    await pool.query(
+      'INSERT INTO usuario (nombre_usuario, correo, contrasena) VALUES ($1, $2, $3)',
+      [nombre_usuario, userEmail, hashedPassword]
+    );
+
     res.status(201).json({ message: 'Usuario registrado exitosamente' });
   } catch (error) {
-    console.error('Error al registrar usuario:', error);
-    res.status(500).json({ error: 'Error al registrar usuario' });
+    console.error('Error en el registro:', error);
+    res.status(500).json({ error: 'Error del servidor' });
   }
 });
 
-// Ruta para iniciar sesión
+// Login
 router.post('/login', async (req, res) => {
   const { userEmail, userPassword } = req.body;
 
@@ -37,25 +41,30 @@ router.post('/login', async (req, res) => {
   }
 
   try {
-    const query = 'SELECT id, nombre_usuario, contrasena, rol FROM usuario WHERE correo = $1';
-    const result = await pool.query(query, [userEmail]);
-    const user = result.rows[0];
-
-    if (!user) {
+    const result = await pool.query('SELECT * FROM usuario WHERE correo = $1 LIMIT 1', [userEmail]);
+    if (result.rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
+    const user = result.rows[0];
     const isMatch = await bcrypt.compare(userPassword, user.contrasena);
     if (!isMatch) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
     const token = jwt.sign({ id: user.id, rol: user.rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ message: 'Inicio de sesión exitoso', token });
+
+    res.status(200).json({
+      message: 'Login exitoso',
+      token,
+      nombre_usuario: user.nombre_usuario,
+      rol: user.rol
+    });
   } catch (error) {
-    console.error('Error al iniciar sesión:', error);
-    res.status(500).json({ error: 'Error al iniciar sesión' });
+    console.error('Error en login:', error);
+    res.status(500).json({ error: 'Error del servidor' });
   }
 });
 
 module.exports = router;
+
