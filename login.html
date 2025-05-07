@@ -43,6 +43,16 @@
                         <i class='bx bx-lock-alt'></i>
                         <input type="password" name="userPassword" placeholder="Contraseña" required>
                     </label>
+                    <!-- Agregado campo para seleccionar el rol -->
+                    <label>
+                        <i class='bx bx-user-circle'></i>
+                        <select name="userRole" required>
+                            <option value="">Selecciona un Rol</option>
+                            <option value="admin">Administrador</option>
+                            <option value="trabajador">Trabajador</option>
+                            <option value="cocina">Cocinero</option>
+                        </select>
+                    </label>
                     <input type="submit" value="Registrarse">
                     <div class="alerta-error">Todos los campos son obligatorios</div>
                     <div class="alerta-exito">Te registraste correctamente</div>
@@ -106,4 +116,5 @@
     </script>
 </body>
 </html>
+
 
