@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 function cargarMenu() {
     $.ajax({
-        url: 'http://localhost:3001/servicios/pedir-plato',
+        url: 'https://campus-web-ohbo.onrender.com/servicios/pedir-plato',
         method: 'GET',
         contentType: 'application/json',
         success: function(menuItems) {
