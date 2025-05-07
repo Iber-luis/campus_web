@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConnection');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Ruta para registrar un nuevo usuario
 router.post('/register', async (req, res) => {
@@ -56,8 +57,13 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
 
+        // Generar el token JWT para el usuario
+        const token = jwt.sign({ id: user.id, rol: user.rol }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        // Enviar la respuesta con el rol del usuario y el token
         res.status(200).json({
             message: 'Login exitoso',
+            token: token,
             nombre_usuario: user.nombre_usuario,
             rol: user.rol
         });
@@ -68,3 +74,4 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+

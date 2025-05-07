@@ -22,11 +22,13 @@ $(document).ready(function() {
                 alert(`Bienvenido, ${data.nombre_usuario}. Rol: ${data.rol}`);
                 localStorage.setItem("usuario", JSON.stringify(data));
 
-                // Redirige según el rol
+                // Redirigir según el rol
                 if (data.rol === 'admin') {
                     window.location.href = 'admin.html';
-                } else {
-                    window.location.href = 'index.html';
+                } else if (data.rol === 'trabajador') {
+                    window.location.href = 'caja.html';
+                } else if (data.rol === 'cocina') {
+                    window.location.href = 'cocina.html';
                 }
             } else {
                 alert(data.error || 'Error al iniciar sesión');
@@ -37,3 +39,4 @@ $(document).ready(function() {
         }
     });
 });
+
