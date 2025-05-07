@@ -18,21 +18,22 @@ router.post('/login', async (req, res) => {
         }
 
         const user = result.rows[0];
-
         const isMatch = await bcrypt.compare(userPassword, user.contrasena);
 
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
 
-        return res.status(200).json({ 
+        // Si pasa la validación
+        res.status(200).json({
             message: 'Login exitoso',
             nombre_usuario: user.nombre_usuario,
-            rol: user.rol 
+            rol: user.rol
         });
+
     } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        return res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error en login:', error);
+        res.status(500).json({ error: 'Error del servidor' });
     }
 });
 
