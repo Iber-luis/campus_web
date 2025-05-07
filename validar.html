@@ -22,7 +22,7 @@
             const nombreUsuario = localStorage.getItem("nombreUsuario");
             
             $.ajax({
-                url: `http://localhost:3001/servicios/verificar-permiso/${nombreUsuario}`,
+                url: `https://campus-web-ohbo.onrender.com/servicios/verificar-permiso/${nombreUsuario}`,
                 method: 'GET',
                 success: function(response) {
                     if (response.permitido) {
@@ -56,7 +56,7 @@
 
         function eliminarSolicitud() {
             $.ajax({
-                url: `http://localhost:3001/servicios/eliminar-solicitud/${nombreUsuario}`,
+                url: `https://campus-web-ohbo.onrender.com/servicios/eliminar-solicitud/${nombreUsuario}`,
                 method: 'DELETE',
                 success: function(response) {
                     console.log("Solicitud eliminada:", response);
