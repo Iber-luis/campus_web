@@ -28,6 +28,10 @@ const actualizarEstado = require('./servicios/svc-actualizar_estado');
 const eleminarSolicitud = require('./servicios/svc-eliminar_solicitud');
 const obtenerPedidos = require('./servicios/svc-obtener_pedido');
 const gestionarPlatos = require('./servicios/svc-administrar_platos');
+const svcAdministrarMesas = require('./servicios/svc-administrar_mesas');
+const svcObtenerfacturas = require('./servicios/svc-obtener_facturas');
+const svcResumenGeneral = require('./servicios/svc-reumen_general');
+
 
 app.use('/servicios', pedirPlato);
 app.use('/servicios', pedirMesas);
@@ -39,6 +43,9 @@ app.use('/servicios', actualizarEstado);
 app.use('/servicios', eleminarSolicitud);
 app.use('/servicios', obtenerPedidos);
 app.use('/servicios', gestionarPlatos);
+app.use('/servicios/administrar-mesa', svcAdministrarMesas);
+app.use('/servicios/obtener-factura', svcObtenerfacturas);
+app.use('/servicios/resumen-ventas', svcResumenGeneral);
 
 // Iniciar el servidor
 app.listen(PORT, () => {
