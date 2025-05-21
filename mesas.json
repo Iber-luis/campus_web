@@ -1,44 +1,20 @@
 [
   {
-    "id": 2,
-    "nombre_mesa": "mesa 1",
-    "cantidad_asiento": "2",
-    "estado": 0
-  },
-  {
     "id": 3,
-    "nombre_mesa": "mesa 2",
-    "cantidad_asiento": "4",
-    "estado": 0
+    "nombre_mesa": "Mesa 3",
+    "cantidad_asiento": 6,
+    "estado": false
   },
   {
-    "id": 4,
-    "nombre_mesa": "mesa 3",
-    "cantidad_asiento": "4",
-    "estado": 0
+    "id": 1,
+    "nombre_mesa": "Mesa 1",
+    "cantidad_asiento": 4,
+    "estado": false
   },
   {
-    "id": 5,
-    "nombre_mesa": "mesa 4",
-    "cantidad_asiento": "4",
-    "estado": 0
-  },
-  {
-    "id": 6,
-    "nombre_mesa": "mesa 5",
-    "cantidad_asiento": "4",
-    "estado": 0
-  },
-  {
-    "id": 7,
-    "nombre_mesa": "mesa 6",
-    "cantidad_asiento": "1",
-    "estado": 0
-  },
-  {
-    "id": 8,
-    "nombre_mesa": "mesa 7",
-    "cantidad_asiento": "6",
-    "estado": 0
+    "id": 2,
+    "nombre_mesa": "Mesa 2",
+    "cantidad_asiento": 2,
+    "estado": true
   }
 ]
