@@ -60,7 +60,7 @@ router.post('/finalizar-pedido', (req, res) => {
                     }
 
                     // Actualizar el estado de la mesa a disponible (0)
-                    const sqlUpdateMesa = `UPDATE mesa SET estado = 0 WHERE nombre_mesa = $1`;  // Parámetro $1
+                    const sqlUpdateMesa = `UPDATE mesa SET estado = false WHERE nombre_mesa = $1`;  // Parámetro $1
 
                     pool.query(sqlUpdateMesa, [nombre_mesa], (err) => {  // Usamos pool.query
                         if (err) {
