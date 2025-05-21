@@ -16,7 +16,7 @@ router.post('/guardar-pedido', (req, res) => {
         }
 
         // Actualizar el estado de la mesa
-        const sqlUpdateMesa = `UPDATE mesa SET estado = 1 WHERE nombre_mesa = $1`;  // Usar parámetro $1
+        const sqlUpdateMesa = `UPDATE mesa SET estado = false WHERE nombre_mesa = $1`;  // Usar parámetro $1
         
         pool.query(sqlUpdateMesa, [nombreMesa], (err, resultado) => {  // Usar 'pool.query'
             if (err) {
