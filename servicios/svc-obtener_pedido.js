@@ -4,7 +4,7 @@ const { pool } = require('../dbConnection');  // Asegurarse de que 'pool' sea im
 
 // Ruta para obtener todos los pedidos
 router.post('/obtener-pedidos', (req, res) => {
-    const sql = 'SELECT platos, precios, nombre_mesa, nombre_usuario FROM pedido';
+    const sql = 'SELECT platos, precios, nombre_usuario, nombre_mesa FROM pedido';
     pool.query(sql, (err, resultados) => {  // Usamos pool.query en lugar de conexion.query
         if (err) {
             console.error("Error al obtener pedidos:", err);
