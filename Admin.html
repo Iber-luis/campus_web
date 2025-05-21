@@ -396,7 +396,7 @@
                     };
             
                     $.ajax({
-                        url: 'https://campus-web-ohbo.onrender.com/servicios/administrar-mesa/actualizar-mesa/${id}',
+                        url: `https://campus-web-ohbo.onrender.com/servicios/administrar-mesa/actualizar-mesa/${id}`,
                         method: 'PUT',
                         contentType: 'application/json',
                         data: JSON.stringify(mesaActualizada),
@@ -413,7 +413,7 @@
                 function eliminarMesa(id) {
                     if (confirm('¿Estás seguro de que deseas eliminar esta mesa?')) {
                         $.ajax({
-                            url: 'https://campus-web-ohbo.onrender.com/servicios/administrar-mesa/eliminar-mesa/${id}',
+                            url: `https://campus-web-ohbo.onrender.com/servicios/administrar-mesa/eliminar-mesa/${id}`,
                             method: 'DELETE',
                             success: function() {
                                 cargarMesas();
