@@ -18,7 +18,7 @@ router.get('/obtener-mesas', (req, res) => {
 // Ruta para agregar una nueva mesa
 router.post('/agregar-mesa', (req, res) => {
     const { nombre_mesa, cantidad_asiento } = req.body;
-    const sql = 'INSERT INTO mesa (nombre_mesa, cantidad_asiento, estado) VALUES ($1, $2, 0)';
+    const sql = 'INSERT INTO mesa (nombre_mesa, cantidad_asiento, estado) VALUES ($1, $2, false)';
 
     pool.query(sql, [nombre_mesa, cantidad_asiento], (err) => {
         if (err) {
