@@ -3,7 +3,7 @@ const router = express.Router();
 const { pool } = require('../dbConnection');  // Asegurarse de que 'pool' sea importado correctamente
 
 // Ruta para obtener todos los pedidos
-router.post('/obtener-pedidos', (req, res) => {
+router.get('/obtener-pedidos', (req, res) => {
     const sql = `SELECT platos, precios, nombre_usuario, nombre_mesa FROM pedido`;
     pool.query(sql, (err, resultados) => {
         if (err) {
