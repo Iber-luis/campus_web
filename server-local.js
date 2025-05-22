@@ -31,7 +31,7 @@ const gestionarPlatos = require('./servicios/svc-administrar_platos');
 const svcAdministrarMesas = require('./servicios/svc-administrar_mesas');
 const svcObtenerfacturas = require('./servicios/svc-obtener_facturas');
 const svcResumenGeneral = require('./servicios/svc-reumen_general');
-const svcLogin = require('./servicios/svc-auth');
+
 
 
 
@@ -49,7 +49,7 @@ app.use('/servicios', gestionarPlatos);
 app.use('/servicios/administrar-mesa', svcAdministrarMesas);
 app.use('/servicios/obtener-factura', svcObtenerfacturas);
 app.use('/servicios/resumen-ventas', svcResumenGeneral);
-app.use('/servicios', svcauth);
+
 
 
 
