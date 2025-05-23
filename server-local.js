@@ -34,8 +34,6 @@ const svcResumenGeneral = require('./servicios/svc-reumen_general');
 
 
 
-
-
 app.use('/servicios', pedirPlato);
 app.use('/servicios', pedirMesas);
 app.use('/servicios', guardarPedido);

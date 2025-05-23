@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConnection');  // Usar 'pool' desde el archivo de conexión
+app.use(express.json());
 
 router.post('/guardar-pedido', (req, res) => {
     const { platos, precios, nombreMesa, nombreUsuario } = req.body;
