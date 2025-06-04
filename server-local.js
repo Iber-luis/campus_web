@@ -46,7 +46,7 @@ app.use('/servicios', obtenerPedidos);
 app.use('/servicios', gestionarPlatos);
 app.use('/servicios/administrar-mesa', svcAdministrarMesas);
 app.use('/servicios/obtener-factura', svcObtenerfacturas);
-app.use('/servicios/resumen-ventas', svcResumenGeneral);
+app.use('/servicios/resumen-general', svcResumenGeneral);
 
 
 
