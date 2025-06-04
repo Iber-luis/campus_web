@@ -222,50 +222,56 @@
         }
     }
     
-    
-    
     function realizarPedido() {
-        let platos = [];
-        let precios = [];
-    
-        for (let id in menu) {
-            platos.push(menu[id].nombre);
-            precios.push(menu[id].total.toFixed(2));
+    let platos = [];
+    let total = 0;
+
+    for (let id in menu) {
+        platos.push(menu[id].nombre);
+        total += menu[id].total;
+    }
+
+    if (platos.length === 0) {
+        alert("No hay productos en el pedido.");
+        return;
+    }
+
+    const nombreMesa = localStorage.getItem("nombreMesa");
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
+
+    if (!nombreMesa || !nombreUsuario) {
+        alert("Faltan datos de usuario o mesa.");
+        return;
+    }
+
+    const pedidoData = {
+        platos: platos.join(', '),
+        total: total.toFixed(2),
+        nombreMesa,
+        nombreUsuario
+    };
+
+    $.ajax({
+        url: 'https://campus-web-ohbo.onrender.com/api/guardar-pedido',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(pedidoData),
+        success: function(response) {
+            alert("Pedido realizado con éxito!");
+            menu = {};
+            actualizarMuenulateral();
+            actualizarNotificacion();
+            window.location.href = 'mesas.html';
+        },
+        error: function(error) {
+            console.error("Error al realizar el pedido:", error);
+            alert("Ocurrió un error al procesar el pedido.");
         }
+    });
+}
+
     
-        if (platos.length === 0) {
-            alert("No hay productos en el pedido.");
-            return;
-        }
-    
-        const nombreMesa = localStorage.getItem("nombreMesa");
-        const nombreUsuario = localStorage.getItem("nombreUsuario");
-    
-        const pedidoData = {
-            platos: platos.join(', '),
-            precios: precios.join(', '),
-            nombreMesa: nombreMesa,
-            nombreUsuario: nombreUsuario
-        };
-    
-        $.ajax({
-            url: 'https://campus-web-ohbo.onrender.com/servicios/guardar-pedido',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(pedidoData),
-            success: function(response) {
-                alert("Pedido realizado con éxito!");
-                menu = {};
-                actualizarMuenulateral();
-                actualizarNotificacion();
-                window.location.href = 'mesas.html';
-            },
-            error: function(error) {
-                console.error("Error al realizar el pedido:", error);
-                alert("Ocurrió un error al procesar el pedido.");
-            }
-        });
-    } 
+     
     </script>
     
     <script>

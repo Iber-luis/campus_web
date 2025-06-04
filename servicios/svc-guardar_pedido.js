@@ -4,13 +4,13 @@ const { pool } = require('../dbConnection');  // Usar 'pool' desde el archivo de
 
 
 router.post('/guardar-pedido', (req, res) => {
-    const { platos, precios, nombreMesa, nombreUsuario } = req.body;
+    const { platos, total, nombreMesa, nombreUsuario } = req.body;
 
     // Consulta para insertar el pedido
     const sql = `INSERT INTO pedido (platos, precios, nombre_mesa, nombre_usuario) 
                  VALUES ($1, $2, $3, $4)`;  // Usar parámetros $1, $2, $3, $4
     
-    pool.query(sql, [platos, precios, nombreMesa, nombreUsuario], (err, resultado) => {  // Usar 'pool.query'
+    pool.query(sql, [platos, total, nombreMesa, nombreUsuario], (err, resultado) => {  // Usar 'pool.query'
         if (err) {
             console.error("Error al guardar el pedido:", err);
             return res.status(500).send("Error al guardar el pedido");
