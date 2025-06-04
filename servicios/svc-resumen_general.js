@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../dbConnection'); // Asegúrate de exportar pool desde tu archivo de conexión
 
-router.get('/', (req, res) => {
+router.get('/resumen_general', (req, res) => {
     const sqlTotalVentas = 'SELECT COALESCE(SUM(pago_total), 0) AS total_ventas FROM factura';
     const sqlNumeroVentas = 'SELECT COUNT(*) AS numero_ventas FROM factura';
     const sqlNumeroClientes = 'SELECT COUNT(DISTINCT cc) AS numero_clientes FROM factura';
