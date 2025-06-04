@@ -2,11 +2,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'dpg-d055bnje5dus738udd0g-a.oregon-postgres.render.com',
+  host: 'dpg-d0u9adm3jp1c73flu3g0-a.oregon-postgres.render.com',
   port: 5432,
   user: 'root',
-  password: 'TFTc4ZslBhUtsPCWAXTQ82s4zTKWH9yf',
-  database: 'campus_meby',
+  password: 'O9KoZ8Hiba6NnRdWNLDd69jRj0CYQVpY',
+  database: 'campus_k8ai',
   ssl: { rejectUnauthorized: false },
 });
 
