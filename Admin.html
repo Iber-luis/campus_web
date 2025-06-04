@@ -58,10 +58,45 @@
                 </table>
             </div>
         </div>
+
+
         <div id="solicitudes" class="hidden">
             <h2>Solicitudes</h2>
             <p>Visualizacion de solicitudes Campus.</p>
             <div id="solicitudes-pendientes">
+
+              <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        url: 'https://campus-web-ohbo.onrender.com/servicios/reumen_general',
+                        method: 'GET',
+                        success: function (data) {
+                            // Mostrar el resumen general
+                            $('#total-ventas').text(`$${data.totalVentas.toFixed(2)}`);
+                            $('#numero-ventas').text(data.numeroVentas);
+                            $('#numero-clientes').text(data.numeroClientes);
+                
+                            // Mostrar ventas por mes
+                            const ventasPorMes = data.ventasPorMes;
+                            const tbody = $('#ventas-por-mes');
+                            ventasPorMes.forEach((venta) => {
+                                const fila = `
+                                    <tr>
+                                        <td>${venta.mes}</td>
+                                        <td>${venta.anio}</td>
+                                        <td>$${venta.total_mes.toFixed(2)}</td>
+                                    </tr>
+                                `;
+                                tbody.append(fila);
+                            });
+                        },
+                        error: function (error) {
+                            console.error("Error al obtener el resumen de ventas:", error);
+                            console.log("No se pudo cargar el resumen de ventas.");
+                        }
+                    });
+                });
+            </script>   
                 
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
