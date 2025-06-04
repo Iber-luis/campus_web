@@ -30,7 +30,7 @@ const obtenerPedidos = require('./servicios/svc-obtener_pedido');
 const gestionarPlatos = require('./servicios/svc-administrar_platos');
 const svcAdministrarMesas = require('./servicios/svc-administrar_mesas');
 const svcObtenerfacturas = require('./servicios/svc-obtener_facturas');
-const svcResumenGeneral = require('./servicios/svc-reumen_general');
+const svcResumenGeneral = require('./servicios/svc-resumen_general');
 
 
 

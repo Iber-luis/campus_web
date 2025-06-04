@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Raleway:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Administracion</title>
 </head>
 <body>
@@ -37,9 +38,9 @@
             <p>Informe Resumen principal</p>
             <div class="resumenbox">
                 <div class="resumen">
-                    <p>-Total de Ventas:<span>#222</span></p>
-                    <p>-Numero de ventas:<span>#222</span></p>
-                    <p>-Numero de clientes:<span>#222</span></p>
+                    <p>-Total de Ventas: <span id="total-ventas">0</span></p>
+                    <p>-Numero de ventas:<span id="numero-ventas">0</span></p>
+                    <p>-Numero de clientes:<span id="numero-clientes">0</span></p>
                 </div>
             </div>
             <div class="tablabox">
@@ -50,25 +51,17 @@
                         <th>Mes</th>
                         <th>Ventas</th>
                     </tr>
-                <tr>
-                    <td>2222</td>
-                    <td>2222</td>
-                    <td>2222</td>
-                </tr>
+                    <tbody id="ventas-por-mes">
+                    <!-- Las filas las agrega JS -->
+                    </tbody>
                 </table>
             </div>
         </div>
 
-
-        <div id="solicitudes" class="hidden">
-            <h2>Solicitudes</h2>
-            <p>Visualizacion de solicitudes Campus.</p>
-            <div id="solicitudes-pendientes">
-
               <script>
                 $(document).ready(function () {
                     $.ajax({
-                        url: 'https://campus-web-ohbo.onrender.com/servicios/reumen_general',
+                        url: 'https://campus-web-ohbo.onrender.com/servicios/resumen_general',
                         method: 'GET',
                         success: function (data) {
                             // Mostrar el resumen general
@@ -97,6 +90,11 @@
                     });
                 });
             </script>   
+
+            <div id="solicitudes" class="hidden">
+            <h2>Solicitudes</h2>
+            <p>Visualizacion de solicitudes Campus.</p>
+            <div id="solicitudes-pendientes">
                 
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
